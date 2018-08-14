@@ -26,7 +26,6 @@ namespace CognitiveServices.FaceApi.Views
             ("verify", typeof(VerifyPage))
         };
 
-
         public MainPage()
         {
             this.InitializeComponent();

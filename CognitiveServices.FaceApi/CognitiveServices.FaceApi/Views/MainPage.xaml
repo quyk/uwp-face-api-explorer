@@ -5,16 +5,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
+    <Grid>
+        <TextBlock Text="Microsoft Azure Cognitive Services: Face API" Style="{StaticResource CaptionTextBlockStyle}" Margin="13,8,0,0"/>
         <NavigationView 
             x:Name="NavView"
             ItemInvoked="NavView_ItemInvoked"
             IsSettingsVisible="False"
             IsPaneOpen="False"
             Loaded="NavView_Loaded"
-            BackRequested="NavView_BackRequested">
-
+            BackRequested="NavView_BackRequested"
+            Margin="0,30,0,0"
+            Background="Transparent">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="home" />
                 <NavigationViewItemHeader Content="Serviços"/>
@@ -25,9 +27,7 @@
                 <NavigationViewItem Icon="BrowsePhotos" Content="Identificar" Tag="identify"/>
                 <NavigationViewItem Icon="WebCam" Content="Verificar" Tag="verify"/>
             </NavigationView.MenuItems>
-
-            <Frame x:Name="ContentFrame" Margin="24"/>
+            <Frame x:Name="ContentFrame" Margin="0,-58,10,0"/>
         </NavigationView>
     </Grid>
-
 </Page>

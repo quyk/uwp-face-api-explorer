@@ -4,14 +4,64 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CognitiveServices.FaceApi">
 
-    <!--<Application.Resources>
+    <Application.Resources>
         <ResourceDictionary>
-            <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
-                          BackgroundSource="Backdrop" TintColor="Yellow" TintOpacity=".6"/>
-            <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
-                          BackgroundSource="Backdrop" TintColor="Yellow" TintOpacity=".6"/>
-            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
-                          BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity=".8"/>
+            <!-- Color -->
+            <Color x:Key="RedError">#DA3A29</Color>
+
+            <!-- CommandBar -->
+            <Style x:Name="CommandBarDefault" TargetType="CommandBar">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="DefaultLabelPosition" Value="Right"/>
+                <Setter Property="Height" Value="60"/>
+                <Setter Property="OverflowButtonVisibility" Value="Collapsed"/>
+            </Style>
+
+            <!-- ProgressBar -->
+            <Style x:Name="ProgressBarDefault" TargetType="ProgressBar">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="#FF007ACB"></Setter>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="IsIndeterminate" Value="True"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Width" Value="350"/>
+            </Style>
+
+            <!-- ListView -->
+            <Style x:Name="ListViewDefault" TargetType="ListView">
+                <Setter Property="Margin" Value="20,60,10,0"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+
+            <Style TargetType="ListViewItem">
+                <Setter Property="Background" Value="#191818"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="0,0,0,2"/>
+            </Style>
+            <!-- FontIcon -->
+            <Style x:Name="FontIconDefault" TargetType="FontIcon">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="0,5,20,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <!-- TextBlock -->
+            <Style x:Name="TextBlockTitleCommandBar" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Margin" Value="12,6"/>
+                <Setter Property="Padding" Value="20,0,0,40"/>
+            </Style>
+
+            <Style x:Name="TextBlockTitleSmall" TargetType="TextBlock">
+                <Setter Property="Margin" Value="0,4,0,0"/>
+                <Setter Property="Opacity" Value="0.6"/>
+            </Style>
+            <!-- StackPanel -->
         </ResourceDictionary>
-    </Application.Resources>-->
+    </Application.Resources>
 </Application>

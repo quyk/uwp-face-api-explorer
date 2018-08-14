@@ -1,8 +1,11 @@
-﻿using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using CognitiveServices.FaceApi.Extensions;
+using CognitiveServices.FaceApi.Models;
 using Newtonsoft.Json;
 
 namespace CognitiveServices.FaceApi.Service
@@ -15,7 +18,7 @@ namespace CognitiveServices.FaceApi.Service
 
         private static HttpClient Headers(HttpClient httpClient)
         {
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", ApplicationJson);
             httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", SubscriptioKey);
             return httpClient;
         }
@@ -54,7 +57,8 @@ namespace CognitiveServices.FaceApi.Service
 
         public static async Task<HttpResponseMessage> PutAsync(string url, object obj)
         {
-            var content = new StringContent(Serialize(obj), Encoding.UTF8, ApplicationJson);
+            var json = Serialize(obj);
+            var content = new StringContent(json, Encoding.UTF8, ApplicationJson);
             var httpClient = new HttpClient();
             httpClient = Headers(httpClient);
             return await httpClient.PutAsync($"{BaseUrl}/{url}", content);
@@ -65,6 +69,16 @@ namespace CognitiveServices.FaceApi.Service
             var httpClient = new HttpClient();
             httpClient = Headers(httpClient);
             return await httpClient.DeleteAsync($"{BaseUrl}/{url}");
+        }
+
+        public static async Task ShowError(HttpResponseMessage httpResponseMessage)
+        {
+            using (var stream = await httpResponseMessage.Content.ReadAsStreamAsync())
+            {
+                var json = await new StreamReader(stream).ReadToEndAsync();
+                var error = JsonConvert.DeserializeObject<Error>(json);
+                await new MessageDialog($"Messagem: {error.Message}").ShowAsync();
+            }
         }
     }
 }

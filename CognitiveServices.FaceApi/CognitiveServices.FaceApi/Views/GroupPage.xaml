@@ -5,10 +5,38 @@
     xmlns:local="using:CognitiveServices.FaceApi.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="GroupPage" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <CommandBar Style="{StaticResource CommandBarDefault}">
+            <AppBarButton AccessKey="A" Icon="Add" Label="Adicionar" Click="AddButton_OnClick"/>
+            <AppBarButton AccessKey="R" Icon="Refresh" Label="Atualizar" Click="RefreshButton_OnClick"/>
+            <CommandBar.Content>
+                <TextBlock Text="Grupos" Style="{StaticResource TextBlockTitleCommandBar}"/>
+            </CommandBar.Content>
+        </CommandBar>
+        <ProgressBar x:Name="Loading" Style="{StaticResource ProgressBarDefault}"/>
+        <ListView x:Name="LvGroupPerson" Style="{StaticResource ListViewDefault}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid Padding="0,10" Width="3000">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Glyph="&#xECA7;" Style="{StaticResource FontIconDefault}"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding UserData}" Style="{StaticResource TextBlockTitleSmall}"/>
+                        </StackPanel>
+                        <Grid.ContextFlyout>
+                            <MenuFlyout LightDismissOverlayMode="On">
+                                <MenuFlyoutItem Text="Editar" AccessKey="E" Icon="Edit" Click="MenuFlyoutItemEditar_OnClick" />
+                                <MenuFlyoutItem Text="Excluir" AccessKey="D" Icon="Delete" Foreground="{StaticResource RedError}" Click="MenuFlyoutItemExcluir_OnClick" />
+                            </MenuFlyout>
+                        </Grid.ContextFlyout>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
