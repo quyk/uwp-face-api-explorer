@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -98,9 +98,13 @@
     <Compile Include="Dialog\GroupDialog.xaml.cs">
       <DependentUpon>GroupDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\PersonDialog.xaml.cs">
+      <DependentUpon>PersonDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\HttpClientExtensions.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\HttpService.cs" />
     <Compile Include="Views\GroupPage.xaml.cs">
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Dialog\GroupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\PersonDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,7 @@
                 <Setter Property="DefaultLabelPosition" Value="Right"/>
                 <Setter Property="Height" Value="60"/>
                 <Setter Property="OverflowButtonVisibility" Value="Collapsed"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
             </Style>
 
             <!-- ProgressBar -->
@@ -61,7 +62,14 @@
                 <Setter Property="Margin" Value="0,4,0,0"/>
                 <Setter Property="Opacity" Value="0.6"/>
             </Style>
-            <!-- StackPanel -->
+            <!-- ComboBox -->
+            <Style x:Name="ComboBoxDefault" TargetType="ComboBox">
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="PlaceholderText" Value="Carregando"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

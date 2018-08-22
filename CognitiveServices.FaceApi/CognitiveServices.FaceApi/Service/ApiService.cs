@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -114,9 +114,27 @@ namespace CognitiveServices.FaceApi.Service
 
         #region Persons
 
-        public void GetPersonsByGroup(int personGroupId)
+        public async Task<IList<Person>> GetPersonsByGroup(string personGroupId)
         {
-            var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons");
+            try
+            {
+                var request = await HttpService.GetAsync($"persongroups/{personGroupId}/persons");
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<IList<Person>>(json).ToList();
+                    }
+                }
+
+                await HttpService.ShowError(request);
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+            return new List<Person>();
         }
 
         public void GetPerson(int personGroupId, int personId)
@@ -124,14 +142,64 @@ namespace CognitiveServices.FaceApi.Service
             var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}");
         }
 
-        public void CreatePerson(int personGroupId)
+        public async Task<bool> CreatePerson(Group group, Person person)
         {
-            var url = HttpService.PutAsync($"persongroups/${personGroupId}/persons", new object());
+            try
+            {
+                var request = await HttpService.PostAsync($"persongroups/{group.PersonGroupId}/persons", person);
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+                return false;
+            }
         }
 
-        public void DeletePerson(int personGroupId)
+        public async Task<bool> UpdatePerson(Group group, Person person)
         {
-            var url = HttpService.DeleteAsync($"persongroups/{personGroupId}/persons");
+            try
+            {
+                var request = await HttpService.PatchAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}", person);
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+                return false;
+            }
+        }
+
+        public async Task<bool> DeletePerson(Group group, Person person)
+        {
+            try
+            {
+                var request = await HttpService.DeleteAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}");
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+                return false;
+            }
         }
 
         #endregion
