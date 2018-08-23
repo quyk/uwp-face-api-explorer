@@ -153,6 +153,7 @@ namespace CognitiveServices.FaceApi.Service
                     return false;
                 }
 
+                ToastService.Show("Pessoa cadastrada com sucesso!", person.Name);
                 return true;
             }
             catch (Exception exception)
@@ -173,6 +174,7 @@ namespace CognitiveServices.FaceApi.Service
                     return false;
                 }
 
+                ToastService.Show("Pessoa atualizado com sucesso!", person.Name);
                 return true;
             }
             catch (Exception exception)
@@ -193,6 +195,7 @@ namespace CognitiveServices.FaceApi.Service
                     return false;
                 }
 
+                ToastService.Show("Pessoa excluída com sucesso!", person.Name);
                 return true;
             }
             catch (Exception exception)
