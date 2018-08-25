@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -76,8 +76,8 @@ namespace CognitiveServices.FaceApi.Service
             using (var stream = await httpResponseMessage.Content.ReadAsStreamAsync())
             {
                 var json = await new StreamReader(stream).ReadToEndAsync();
-                var error = JsonConvert.DeserializeObject<Error>(json);
-                await new MessageDialog($"Messagem: {error.Message}").ShowAsync();
+                var response = JsonConvert.DeserializeObject<Response>(json);
+                await new MessageDialog($"Messagem: {response.Error.Message}", $"Erro: {response.Error.Code}").ShowAsync();
             }
         }
     }
