@@ -219,9 +219,25 @@ namespace CognitiveServices.FaceApi.Service
             var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}/persistedfaces/{faceId}");
         }
 
-        public void AddPersonFace(int personGroupId, int personId, string imageUrl)
+        public async Task<bool> AddPersonFace(Group group, Person person, Face face)
         {
-            var url = HttpService.PostAsync($"persongroups/{personGroupId}/persons/{personId}/persistedfaces?userData={imageUrl}", new object());
+            try
+            {
+                var request = await HttpService.PostAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}/persistedfaces", face);
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                    return false;
+                }
+
+                ToastService.Show("Face cadastrada com sucesso!", person.Name);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+                return false;
+            }
         }
 
         public void DeletePersonFace(int personGroupId, int personId, int faceId)

@@ -48,9 +48,16 @@
                         </StackPanel>
                         <Grid.ContextFlyout>
                             <MenuFlyout LightDismissOverlayMode="On">
-                                <MenuFlyoutItem Text="Upload" AccessKey="U" Icon="Upload" Click="MenuFlyoutItemUpload_OnClick" />
                                 <MenuFlyoutItem Text="Editar" AccessKey="E" Icon="Edit" Click="MenuFlyoutItemEditar_OnClick" />
                                 <MenuFlyoutItem Text="Excluir" AccessKey="D" Icon="Delete" Foreground="{StaticResource RedError}" Click="MenuFlyoutItemExcluir_OnClick" />
+                                <MenuFlyoutSeparator />
+                                <MenuFlyoutSubItem Text="Rostos">
+                                    <MenuFlyoutSubItem.Icon>
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEB68;"/>
+                                    </MenuFlyoutSubItem.Icon>
+                                    <MenuFlyoutItem Text="Adicionar" AccessKey="U" Icon="Contact2" Click="MenuFlyoutItemAdicionarFace_OnClick" />
+                                    <MenuFlyoutItem Text="Visualizar" AccessKey="V" Icon="ContactInfo" Click="MenuFlyoutItemVisualizarFace_OnClick" />
+                                </MenuFlyoutSubItem>
                             </MenuFlyout>
                         </Grid.ContextFlyout>
                     </Grid>

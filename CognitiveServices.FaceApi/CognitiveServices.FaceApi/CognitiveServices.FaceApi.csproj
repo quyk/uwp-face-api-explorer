@@ -101,10 +101,15 @@
     <Compile Include="Dialog\PersonDialog.xaml.cs">
       <DependentUpon>PersonDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\FaceDialog.xaml.cs">
+      <DependentUpon>FaceDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\HttpClientExtensions.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Face.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\HttpService.cs" />
     <Compile Include="Service\ToastService.cs" />
@@ -157,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\PersonDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\FaceDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

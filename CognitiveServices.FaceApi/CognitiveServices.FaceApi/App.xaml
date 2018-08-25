@@ -62,6 +62,13 @@
                 <Setter Property="Margin" Value="0,4,0,0"/>
                 <Setter Property="Opacity" Value="0.6"/>
             </Style>
+            
+            <Style x:Name="TextBlockTextError" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource RedError}"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
+                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
             <!-- ComboBox -->
             <Style x:Name="ComboBoxDefault" TargetType="ComboBox">
                 <Setter Property="Height" Value="40"/>

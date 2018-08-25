@@ -135,9 +135,21 @@ namespace CognitiveServices.FaceApi.Views
             AddButton_OnClick(sender, e);
         }
 
-        private void MenuFlyoutItemUpload_OnClick(object sender, RoutedEventArgs e)
+        private async void MenuFlyoutItemAdicionarFace_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is MenuFlyoutItem menuFlyoutItem)
+            {
+                if (menuFlyoutItem.DataContext is Person person)
+                {
+                    await new FaceDialog(_group, person).ShowAsync();
+                }
+            }
+        }
+
+        private void MenuFlyoutItemVisualizarFace_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TrainPage));
+
         }
 
         private async void CbxGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
