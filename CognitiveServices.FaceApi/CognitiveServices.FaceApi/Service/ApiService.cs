@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -223,7 +223,7 @@ namespace CognitiveServices.FaceApi.Service
         {
             try
             {
-                var request = await HttpService.PostAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}/persistedfaces", face);
+                var request = await HttpService.PostAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}/persistedfaces?userData={face.Url}", face);
                 if (!request.IsSuccessStatusCode)
                 {
                     await HttpService.ShowError(request);
