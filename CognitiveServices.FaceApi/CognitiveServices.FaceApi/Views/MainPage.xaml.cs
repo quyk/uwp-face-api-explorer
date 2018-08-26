@@ -22,7 +22,8 @@ namespace CognitiveServices.FaceApi.Views
             ("person", typeof(PersonPage)),
             ("train", typeof(TrainPage)),
             ("identify", typeof(IdentifyPage)),
-            ("verify", typeof(VerifyPage))
+            ("verify", typeof(VerifyPage)),
+            ("face", typeof(FacePage))
         };
 
         public MainPage()
@@ -101,9 +102,12 @@ namespace CognitiveServices.FaceApi.Views
             NavView.IsBackEnabled = ContentFrame.CanGoBack;
             var item = _pages.First(p => p.Page == e.SourcePageType);
 
-            NavView.SelectedItem = NavView.MenuItems
-                .OfType<NavigationViewItem>()
-                .First(n => n.Tag.Equals(item.Tag));
+            if (!item.Tag.Equals("face"))
+            {
+                NavView.SelectedItem = NavView.MenuItems
+                    .OfType<NavigationViewItem>()
+                    .First(n => n.Tag.Equals(item.Tag));
+            }
         }
     }
 }

@@ -148,8 +148,13 @@ namespace CognitiveServices.FaceApi.Views
 
         private void MenuFlyoutItemVisualizarFace_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TrainPage));
-
+            if (sender is MenuFlyoutItem menuFlyoutItem)
+            {
+                if (menuFlyoutItem.DataContext is Person person)
+                {
+                    Frame.Navigate(typeof(FacePage), new Parameter { Group = _group, Person = person });
+                }
+            }
         }
 
         private async void CbxGroup_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

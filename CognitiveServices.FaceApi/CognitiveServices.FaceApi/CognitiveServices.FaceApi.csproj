@@ -108,11 +108,15 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Face.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\HttpService.cs" />
     <Compile Include="Service\ToastService.cs" />
+    <Compile Include="Views\FacePage.xaml.cs">
+      <DependentUpon>FacePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\FaceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FacePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

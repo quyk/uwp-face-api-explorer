@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -137,9 +137,27 @@ namespace CognitiveServices.FaceApi.Service
             return new List<Person>();
         }
 
-        public void GetPerson(int personGroupId, int personId)
+        public async Task<Person> GetPerson(Group group, Person person)
         {
-            var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}");
+            try
+            {
+                var request = await HttpService.GetAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}");
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<Person>(json);
+                    }
+                }
+
+                await HttpService.ShowError(request);
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+            return new Person();
         }
 
         public async Task<bool> CreatePerson(Group group, Person person)
@@ -214,9 +232,27 @@ namespace CognitiveServices.FaceApi.Service
             var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}");
         }
 
-        public void GetPersonFace(int personGroupId, int personId, int faceId)
+        public async Task<Face> GetPersonFace(Group group, Person person, string persistedFaceId)
         {
-            var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}/persistedfaces/{faceId}");
+            try
+            {
+                var request = await HttpService.GetAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}/persistedfaces/{persistedFaceId}");
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<Face>(json);
+                    }
+                }
+
+                await HttpService.ShowError(request);
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+            return new Face();
         }
 
         public async Task<bool> AddPersonFace(Group group, Person person, Face face)
@@ -240,9 +276,25 @@ namespace CognitiveServices.FaceApi.Service
             }
         }
 
-        public void DeletePersonFace(int personGroupId, int personId, int faceId)
+        public async Task<bool> DeletePersonFace(Group group, Person person, Face face)
         {
-            var url = HttpService.DeleteAsync($"persongroups/{personGroupId}/persons/{personId}/persistedfaces/{faceId}");
+            try
+            {
+                var request = await HttpService.DeleteAsync($"persongroups/{group.PersonGroupId}/persons/{person.PersonId}/persistedfaces/{face.PersistedFaceId}");
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                    return false;
+                }
+
+                ToastService.Show("Face excluída com sucesso!", person.Name);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+                return false;
+            }
         }
 
         #endregion

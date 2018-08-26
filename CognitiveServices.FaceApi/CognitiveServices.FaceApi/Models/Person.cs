@@ -8,7 +8,7 @@ namespace CognitiveServices.FaceApi.Models
         [JsonProperty(PropertyName = "personId")]
         public string PersonId { get; set; }
         [JsonProperty(PropertyName = "persistedFaceIds")]
-        public IList<string> PersistedFaces { get; set; }
+        public IList<string> PersistedFacesIds { get; set; }
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
         [JsonProperty(PropertyName = "userData")]

@@ -56,7 +56,7 @@
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEB68;"/>
                                     </MenuFlyoutSubItem.Icon>
                                     <MenuFlyoutItem Text="Adicionar" AccessKey="U" Icon="Contact2" Click="MenuFlyoutItemAdicionarFace_OnClick" />
-                                    <MenuFlyoutItem Text="Visualizar" AccessKey="V" Icon="ContactInfo" Click="MenuFlyoutItemVisualizarFace_OnClick" />
+                                    <MenuFlyoutItem Text="Visualizar" Tag="face" AccessKey="V" Icon="ContactInfo" Click="MenuFlyoutItemVisualizarFace_OnClick" />
                                 </MenuFlyoutSubItem>
                             </MenuFlyout>
                         </Grid.ContextFlyout>
