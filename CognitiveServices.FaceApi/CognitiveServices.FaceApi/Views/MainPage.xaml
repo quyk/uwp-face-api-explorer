@@ -22,7 +22,7 @@
                 <NavigationViewItemHeader Content="Serviços"/>
                 <NavigationViewItem Icon="People" Content="Grupo" Tag="group" />
                 <NavigationViewItem Icon="Contact" Content="Pessoas" Tag="person"/>
-                <NavigationViewItem Icon="Play" Content="Treinameto" Tag="train"/>
+                <NavigationViewItem Icon="Play" Content="Treinamento" Tag="train"/>
                 <NavigationViewItem Icon="BrowsePhotos" Content="Identificar" Tag="identify"/>
                 <NavigationViewItem Icon="WebCam" Content="Verificar" Tag="verify"/>
             </NavigationView.MenuItems>

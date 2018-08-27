@@ -7,8 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Grid>
-        <TextBlock Text="TrainPage" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="280"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Treinamento" Style="{StaticResource TextBlockTitleCommandBar}"/>
+            <ComboBox x:Name="CbxGroup" Grid.Column="1" Style="{StaticResource ComboBoxDefault}" SelectionChanged="CbxGroup_OnSelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <CommandBar Grid.Column="2" Style="{StaticResource CommandBarDefault}">
+                <AppBarSeparator />
+                <AppBarButton x:Name="AbbPlay" AccessKey="A" Icon="Play" Label="Treinar" IsEnabled="False" Click="AbbPlay_OnClick"/>
+                <AppBarButton x:Name="AbbChecar" AccessKey="R" Icon="Accept" Label="Checar treinamento" IsEnabled="False" Click="AbbChecar_OnClick"/>
+            </CommandBar>
+        </Grid>
+        <ProgressBar Grid.Row="1" x:Name="Loading" Style="{StaticResource ProgressBarDefault}" Visibility="Collapsed"/>
     </Grid>
 </Page>

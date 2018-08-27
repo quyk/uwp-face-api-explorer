@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using CognitiveServices.FaceApi.Models;
@@ -100,9 +101,27 @@ namespace CognitiveServices.FaceApi.Service
 
         #region Train
 
-        public void TrainPersonGroup(int personGroupId)
+        public async Task TrainPersonGroup(Group group)
         {
-            var url = HttpService.PostAsync($"persongroups/personGroupId/train", new object());
+            try
+            {
+                var request = await HttpService.PostAsync($"persongroups/{group.PersonGroupId}/train", null);
+                if (!request.IsSuccessStatusCode)
+                {
+                    await HttpService.ShowError(request);
+                }
+                else
+                {
+                    if (request.StatusCode == HttpStatusCode.Accepted)
+                    {
+                        ToastService.Show("Grupo treinado com sucesso!", group.Name);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
         }
 
         public void GetPersonGroupTrainingStatus(int personGroupId)
