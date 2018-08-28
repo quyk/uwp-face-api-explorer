@@ -54,9 +54,12 @@ namespace CognitiveServices.FaceApi.Views
             }
         }
 
-        private void AbbChecar_OnClick(object sender, RoutedEventArgs e)
+        private async void AbbChecar_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            if (_group != null)
+            {
+                await new ApiService().GetGroupTraining(_group);
+            }
         }
     }
 }

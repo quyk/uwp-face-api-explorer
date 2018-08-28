@@ -111,6 +111,7 @@
     <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Training.cs" />
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\HttpService.cs" />
     <Compile Include="Service\ToastService.cs" />

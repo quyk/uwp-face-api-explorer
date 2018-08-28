@@ -124,9 +124,29 @@ namespace CognitiveServices.FaceApi.Service
             }
         }
 
-        public void GetPersonGroupTrainingStatus(int personGroupId)
+        public async Task GetGroupTraining(Group group)
         {
-            var url = HttpService.PostAsync($"persongroups/{personGroupId}/training", new  object());
+            try
+            {
+                var request = await HttpService.GetAsync($"persongroups/{group.PersonGroupId}/training");
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        var retorno = JsonConvert.DeserializeObject<Training>(json);
+                        ToastService.Show("Status do treinamento", $"Grupo: {group.Name} | Status: {retorno.GetStatus()}");
+                    }
+                }
+                else
+                {
+                    await HttpService.ShowError(request);
+                }
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
         }
 
         #endregion
