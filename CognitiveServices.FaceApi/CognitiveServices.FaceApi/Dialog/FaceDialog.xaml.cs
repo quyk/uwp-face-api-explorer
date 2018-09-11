@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using CognitiveServices.FaceApi.Helpers;
 using CognitiveServices.FaceApi.Models;
 using CognitiveServices.FaceApi.Service;
 
@@ -26,7 +27,7 @@ namespace CognitiveServices.FaceApi.Dialog
 
         private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            if (CheckUrlValid(Url))
+            if (UrlHelper.Check(Url))
             {
                 args.Cancel = true;
                 TbxUrl.IsEnabled = false;
@@ -70,11 +71,6 @@ namespace CognitiveServices.FaceApi.Dialog
             Url = string.Empty;
             TbxUrl.IsEnabled = true;
             TbkError.Visibility = Visibility.Collapsed;
-        }
-
-        private static bool CheckUrlValid(string url)
-        {
-            return Uri.IsWellFormedUriString(url, UriKind.Absolute);
         }
     }
 }

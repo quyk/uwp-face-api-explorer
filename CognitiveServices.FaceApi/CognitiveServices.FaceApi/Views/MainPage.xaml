@@ -23,8 +23,7 @@
                 <NavigationViewItem Icon="People" Content="Grupo" Tag="group" />
                 <NavigationViewItem Icon="Contact" Content="Pessoas" Tag="person"/>
                 <NavigationViewItem Icon="Play" Content="Treinamento" Tag="train"/>
-                <NavigationViewItem Icon="BrowsePhotos" Content="Identificar" Tag="identify"/>
-                <NavigationViewItem Icon="WebCam" Content="Verificar" Tag="verify"/>
+                <NavigationViewItem Icon="BrowsePhotos" Content="Analizar" Tag="analyze"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Margin="0,-58,10,0"/>
         </NavigationView>

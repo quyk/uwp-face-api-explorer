@@ -21,8 +21,7 @@ namespace CognitiveServices.FaceApi.Views
             ("group", typeof(GroupPage)),
             ("person", typeof(PersonPage)),
             ("train", typeof(TrainPage)),
-            ("identify", typeof(IdentifyPage)),
-            ("verify", typeof(VerifyPage)),
+            ("analyze", typeof(AnalyzePage)),
             ("face", typeof(FacePage))
         };
 

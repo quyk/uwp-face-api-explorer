@@ -266,9 +266,27 @@ namespace CognitiveServices.FaceApi.Service
 
         #region Person Face
 
-        public void GetPersonFaces(int personGroupId, int personId)
+        public async Task<Person> GetPersonFaces(Group group, string personId)
         {
-            var url = HttpService.GetAsync($"persongroups/{personGroupId}/persons/{personId}");
+            try
+            {
+                var request = await HttpService.GetAsync($"persongroups/{group.PersonGroupId}/persons/{personId}");
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<Person>(json);
+                    }
+                }
+
+                await HttpService.ShowError(request);
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+            return new Person();
         }
 
         public async Task<Face> GetPersonFace(Group group, Person person, string persistedFaceId)
@@ -354,14 +372,49 @@ namespace CognitiveServices.FaceApi.Service
 
         #region Face Operations
 
-        public void Detect(string imageUrl)
+        public async Task<IList<FaceDetect>> Detect(string imageUrl)
         {
-            var url = HttpService.PostAsync("detect?returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,glasses,emotion,facialHair", new object());
+            var image = new {url = imageUrl };
+            try
+            {
+                var request = await HttpService.PostAsync("detect?returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,glasses,emotion,facialHair", image);
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<IList<FaceDetect>>(json).ToList();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+
+            return new List<FaceDetect>();
         }
 
-        public void Identify()
+        public async Task<IList<IdentifyResponse>> Identify(Identify identify)
         {
-            var url = HttpService.PostAsync("identify", new object());
+            try
+            {
+                var request = await HttpService.PostAsync("identify", identify);
+                if (request.IsSuccessStatusCode)
+                {
+                    using (var stream = await request.Content.ReadAsStreamAsync())
+                    {
+                        var json = await new StreamReader(stream).ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<IList<IdentifyResponse>>(json).ToList();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                await new MessageDialog($"Error Message: {exception.Message}").ShowAsync();
+            }
+
+            return new List<IdentifyResponse>();
         }
 
         public void Group()

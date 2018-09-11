@@ -98,6 +98,9 @@
     <Compile Include="Dialog\GroupDialog.xaml.cs">
       <DependentUpon>GroupDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ImageDialog.xaml.cs">
+      <DependentUpon>ImageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\PersonDialog.xaml.cs">
       <DependentUpon>PersonDialog.xaml</DependentUpon>
     </Compile>
@@ -105,8 +108,54 @@
       <DependentUpon>FaceDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\HttpClientExtensions.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Face.cs" />
+    <Compile Include="Models\FaceDetect.cs" />
+    <Compile Include="Models\Identify.cs" />
+    <Compile Include="Models\IdentifyResponse.cs" />
+    <Compile Include="Models\Services\Accessory.cs" />
+    <Compile Include="Models\Services\Attributes\EyebrowLeftInner.cs" />
+    <Compile Include="Models\Services\Attributes\EyebrowLeftOuter.cs" />
+    <Compile Include="Models\Services\Attributes\EyebrowRightInner.cs" />
+    <Compile Include="Models\Services\Attributes\EyebrowRightOuter.cs" />
+    <Compile Include="Models\Services\Attributes\EyeLeftBottom.cs" />
+    <Compile Include="Models\Services\Attributes\EyeLeftInner.cs" />
+    <Compile Include="Models\Services\Attributes\EyeLeftOuter.cs" />
+    <Compile Include="Models\Services\Attributes\EyeLeftTop.cs" />
+    <Compile Include="Models\Services\Attributes\EyeRightBottom.cs" />
+    <Compile Include="Models\Services\Attributes\EyeRightInner.cs" />
+    <Compile Include="Models\Services\Attributes\EyeRightOuter.cs" />
+    <Compile Include="Models\Services\Attributes\EyeRightTop.cs" />
+    <Compile Include="Models\Services\Attributes\MouthLeft.cs" />
+    <Compile Include="Models\Services\Attributes\MouthRight.cs" />
+    <Compile Include="Models\Services\Attributes\NoseLeftAlarOutTip.cs" />
+    <Compile Include="Models\Services\Attributes\NoseLeftAlarTop.cs" />
+    <Compile Include="Models\Services\Attributes\NoseRightAlarOutTip.cs" />
+    <Compile Include="Models\Services\Attributes\NoseRightAlarTop.cs" />
+    <Compile Include="Models\Services\Attributes\NoseRootLeft.cs" />
+    <Compile Include="Models\Services\Attributes\NoseRootRight.cs" />
+    <Compile Include="Models\Services\Attributes\NoseTip.cs" />
+    <Compile Include="Models\Services\Attributes\PupilLeft.cs" />
+    <Compile Include="Models\Services\Attributes\PupilRight.cs" />
+    <Compile Include="Models\Services\Attributes\UnderLipBottom.cs" />
+    <Compile Include="Models\Services\Attributes\UnderLipTop.cs" />
+    <Compile Include="Models\Services\Attributes\UpperLipBottom.cs" />
+    <Compile Include="Models\Services\Attributes\UpperLipTop.cs" />
+    <Compile Include="Models\Services\Blur.cs" />
+    <Compile Include="Models\Services\Emotion.cs" />
+    <Compile Include="Models\Services\Exposure.cs" />
+    <Compile Include="Models\Services\FaceAttributes.cs" />
+    <Compile Include="Models\Services\FaceLandmarks.cs" />
+    <Compile Include="Models\Services\FacialHair.cs" />
+    <Compile Include="Models\Services\Hair.cs" />
+    <Compile Include="Models\Services\HairColor.cs" />
+    <Compile Include="Models\Services\HeadPose.cs" />
+    <Compile Include="Models\Services\Makeup.cs" />
+    <Compile Include="Models\Services\Noise.cs" />
+    <Compile Include="Models\Services\Occlusion.cs" />
+    <Compile Include="Models\Services\Rectangle.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Person.cs" />
@@ -121,8 +170,8 @@
     <Compile Include="Views\GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IdentifyPage.xaml.cs">
-      <DependentUpon>IdentifyPage.xaml</DependentUpon>
+    <Compile Include="Views\AnalyzePage.xaml.cs">
+      <DependentUpon>AnalyzePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrainPage.xaml.cs">
       <DependentUpon>TrainPage.xaml</DependentUpon>
@@ -137,9 +186,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\VerifyPage.xaml.cs">
-      <DependentUpon>VerifyPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -166,6 +212,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialog\ImageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialog\PersonDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,7 +232,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\IdentifyPage.xaml">
+    <Page Include="Views\AnalyzePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,10 +251,6 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VerifyPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
