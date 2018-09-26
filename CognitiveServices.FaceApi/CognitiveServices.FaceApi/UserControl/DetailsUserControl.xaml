@@ -1,0 +1,115 @@
+﻿<UserControl
+    x:Class="CognitiveServices.FaceApi.UserControl.DetailsUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CognitiveServices.FaceApi.UserControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="440"
+    d:DesignWidth="1000"
+    Margin="-330,0,0,0">
+    <Grid Background="White" Height="440">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Text="Detalhes" FontSize="24.667" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+        <Canvas Grid.Column="0" Height="1" Grid.ColumnSpan="3" Grid.Row="1" Background="Black"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="250" Margin="10,0">
+            <TextBlock Text="Acurácia" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="SaddleBrown" Padding="5" Margin="2">
+                <TextBlock Text="Confiança:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkCandidateConfidence" Margin="5,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Text="Identificação" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="BlueViolet" Padding="5" Margin="2">
+                <TextBlock Text="Nome:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkName" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="BlueViolet" Padding="5" Margin="2">
+                <TextBlock Text="Idade:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkAge" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="BlueViolet" Padding="5" Margin="2">
+                <TextBlock Text="Sexo:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkGender" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="BlueViolet" Padding="5" Margin="2">
+                <TextBlock Text="Sorrindo:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkSmile" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="BlueViolet" Padding="5" Margin="2">
+                <TextBlock Text="Óculos:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkGlasses" Margin="5,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Text="Emoção" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="Firebrick" Padding="5" Margin="2">
+                <TextBlock x:Name="TbkEmotion" Width="100" Margin="5,0,0,0" />
+                <TextBlock Text="Confiança:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkEmotionConfidence" Margin="5,0,0,0" />
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Width="250" Margin="10,0">
+
+            <TextBlock Text="Maquiagem" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="MidnightBlue" Padding="5" Margin="2">
+                <TextBlock Text="Olhos:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkEyeMakeup" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="MidnightBlue" Padding="5" Margin="2">
+                <TextBlock Text="Lábios:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkLipMakeup" Margin="5,0,0,0" />
+            </StackPanel>
+            
+            <TextBlock Text="Cabelos Facial" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="DarkOliveGreen" Padding="5" Margin="2">
+                <TextBlock Text="Bigode:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkMoustache" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="DarkOliveGreen" Padding="5" Margin="2">
+                <TextBlock Text="Barba:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkBeard" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="DarkOliveGreen" Padding="5" Margin="2">
+                <TextBlock Text="Costeletas:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkSideburns" Margin="5,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Text="Cabelo" FontSize="18" Foreground="Black" FontWeight="SemiBold" Padding="10,5"/>
+            <StackPanel Orientation="Horizontal" Background="Chocolate" Padding="5" Margin="2">
+                <TextBlock Text="Careca:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkBald" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="Chocolate" Padding="5" Margin="2">
+                <TextBlock Text="Invisível:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkInvisible" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="Chocolate" Padding="5" Margin="2">
+                <TextBlock Text="Cor:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkColor" Width="60" Margin="5,0,0,0" />
+                <TextBlock Text="Confiança:" FontWeight="SemiBold"/>
+                <TextBlock x:Name="TbkHairColorConfidence" Margin="5,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical" Width="450" Margin="10,0">
+            <StackPanel Orientation="Horizontal" Background="DimGray" Padding="5" Margin="2">
+                <TextBlock Text="JSON" FontWeight="SemiBold" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Background="DimGray" Padding="5" Margin="2">
+                <TextBox x:Name="TbkJson" Width="430" Height="330" Foreground="White" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="5,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

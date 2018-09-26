@@ -164,6 +164,9 @@
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\HttpService.cs" />
     <Compile Include="Service\ToastService.cs" />
+    <Compile Include="UserControl\DetailsUserControl.xaml.cs">
+      <DependentUpon>DetailsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FacePage.xaml.cs">
       <DependentUpon>FacePage.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\FaceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\DetailsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

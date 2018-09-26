@@ -377,7 +377,7 @@ namespace CognitiveServices.FaceApi.Service
             var image = new {url = imageUrl };
             try
             {
-                var request = await HttpService.PostAsync("detect?returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,glasses,emotion,facialHair", image);
+                var request = await HttpService.PostAsync("detect?returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,noise", image);
                 if (request.IsSuccessStatusCode)
                 {
                     using (var stream = await request.Content.ReadAsStreamAsync())

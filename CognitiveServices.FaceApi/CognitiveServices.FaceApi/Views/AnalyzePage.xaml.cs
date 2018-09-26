@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Shapes;
 using CognitiveServices.FaceApi.Dialog;
 using CognitiveServices.FaceApi.Models;
 using CognitiveServices.FaceApi.Service;
+using Rectangle = Windows.UI.Xaml.Shapes.Rectangle;
 
 namespace CognitiveServices.FaceApi.Views
 {
@@ -21,14 +20,15 @@ namespace CognitiveServices.FaceApi.Views
         private Group _group;
         private string _image;
         private IList<string> _faces;
-        private Identify _identify;
+        private IList<FaceDetect> _faceDetects;
+        private readonly Identify _identify;
         private readonly ImageDialog _imageDialog;
 
         public AnalyzePage()
         {
             _imageDialog = new ImageDialog();
             _identify = new Identify();
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -60,11 +60,11 @@ namespace CognitiveServices.FaceApi.Views
         private async void AbbDetect_OnClick(object sender, RoutedEventArgs e)
         {
             CleanCanvas();
-            var service = await new ApiService().Detect(_image);
-            if (service.Any())
+            _faceDetects = await new ApiService().Detect(_image);
+            if (_faceDetects.Any())
             {
                 _faces = new List<string>();
-                foreach (var face in service)
+                foreach (var face in _faceDetects)
                 {
                     var rectangle = Draw(face);
                     Canvas.SetTop(rectangle, face.FaceRectangle.Top);
@@ -94,7 +94,7 @@ namespace CognitiveServices.FaceApi.Views
                             foreach (var candidate in identify.Candidates)
                             {
                                 var person = await new ApiService().GetPersonFaces(_group, candidate.PersonId);
-                                DrawGreen(person, identify.FaceId);
+                                DrawGreen(person, identify.FaceId, candidate);
                             }
                         }
                     }
@@ -155,7 +155,7 @@ namespace CognitiveServices.FaceApi.Views
             };
         }
 
-        private void DrawGreen(Person person, string faceId)
+        private void DrawGreen(Person person, string faceId, Candidate candidate)
         {
             var rectangle = GrdImage.Children.OfType<Rectangle>().First(x => x.Name == faceId);
             if (rectangle != null)
@@ -163,7 +163,13 @@ namespace CognitiveServices.FaceApi.Views
                 rectangle.Stroke = new SolidColorBrush(Colors.DarkGreen);
                 rectangle.Tapped += async (sender, args) =>
                 {
-                    await new MessageDialog($"Person: {person.Name}").ShowAsync();
+                    if (!ParentedPopup.IsOpen)
+                    {
+                        ParentedPopup.IsOpen = true;
+                        Details.Candidate = candidate;
+                        Details.Person = person;
+                        Details.FaceDetect = _faceDetects.FirstOrDefault(x => x.FaceId == faceId);
+                    }
                 };
             }
         }

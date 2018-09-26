@@ -5,6 +5,7 @@
     xmlns:local="using:CognitiveServices.FaceApi.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControl="using:CognitiveServices.FaceApi.UserControl"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
@@ -39,5 +40,8 @@
                 <Image x:Name="ImgFace"/>
             </Canvas>
         </ScrollViewer>
+        <Popup x:Name="ParentedPopup" HorizontalOffset="200" VerticalOffset="200" IsLightDismissEnabled="True" LightDismissOverlayMode="On">
+            <userControl:DetailsUserControl x:Name="Details" />
+        </Popup>
     </Grid>
 </Page>

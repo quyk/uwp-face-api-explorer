@@ -3,7 +3,7 @@
     public class HeadPose
     {
         public double Roll { get; set; }
-        public int Yaw { get; set; }
-        public int Pitch { get; set; }
+        public double Yaw { get; set; }
+        public double Pitch { get; set; }
     }
 }
