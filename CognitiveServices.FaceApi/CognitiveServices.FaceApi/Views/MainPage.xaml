@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    RequestedTheme="Dark"
     Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
     <Grid>
         <TextBlock Text="Microsoft Azure Cognitive Services: Face API" Style="{StaticResource CaptionTextBlockStyle}" Margin="13,8,0,0"/>
@@ -25,7 +26,7 @@
                 <NavigationViewItem Icon="Play" Content="Treinamento" Tag="train"/>
                 <NavigationViewItem Icon="BrowsePhotos" Content="Analizar" Tag="analyze"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" Margin="0,-58,10,0"/>
+            <Frame x:Name="ContentFrame" Margin="0,5,10,0"/>
         </NavigationView>
     </Grid>
 </Page>

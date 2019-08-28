@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -27,7 +27,7 @@ namespace CognitiveServices.FaceApi.Service
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,   
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
         }
